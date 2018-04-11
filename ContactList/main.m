@@ -18,12 +18,13 @@ int main(int argc, const char * argv[]) {
         while (appOn) {
             InputCollector *inputCollector = [[InputCollector alloc] init];
             
-            NSString *input = [inputCollector inputForPrompt:@"What would you like to do next?\n new - New Contact\n list - List all contacts\n quit - Exit Application\n"];
+            NSString *input = [inputCollector inputForPrompt:@"What would you like to do next?\n new - New Contact\n list - List all contacts\n show # - Contact detail\n quit - Exit Application\n"];
             
             if ([input isEqualToString:@"quit"]) {
                 appOn = NO;
                 break;
-            } else if ([input isEqualToString:@"new"]) {
+            }
+            else if ([input isEqualToString:@"new"]) {
                 Contact *contact = [[Contact alloc] init];
                 NSString *fullName = [inputCollector inputForPrompt:@"Full Name"];
                 NSString *email = [inputCollector inputForPrompt:@"Email"];
@@ -31,9 +32,14 @@ int main(int argc, const char * argv[]) {
                 contact.email = email;
                 
                 [[contactList contactArray] addObject:contact];
-            } else if ([input isEqualToString:@"list"]) {
+            }
+            else if ([input isEqualToString:@"list"]) {
                 [contactList print];
-            } else {
+            }
+            else if ([input containsString:@"show"]) {
+                [contactList showContactDetail:input];
+            }
+            else {
                 NSLog(@"Invalid input");
             }
         }

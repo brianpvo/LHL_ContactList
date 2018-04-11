@@ -17,4 +17,6 @@
 
 -(void)print;
 
+-(void)showContactDetail:(NSString *) string;
+
 @end
