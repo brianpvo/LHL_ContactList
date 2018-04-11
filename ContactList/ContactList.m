@@ -41,12 +41,25 @@
     
     if ([_contactArray count] > 0 && index < [_contactArray count]) {
         Contact *contact = [_contactArray objectAtIndex:index];
-        NSLog(@"%@", [contact name]);
-        NSLog(@"%@", [contact email]);
+        NSLog(@"Name: %@\n Email: %@\n", [contact name], [contact email]);
     } else {
         NSLog(@"Contact not found");
     }
 
+}
+
+-(void)findContact:(NSString *) string {
+    NSString* fixString = [string substringFromIndex:4];
+    fixString = [fixString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    fixString = [fixString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+    
+    for (Contact *c in _contactArray) {
+        if ([[c name] containsString:fixString] || [[c email] containsString:fixString]) {
+            NSLog(@"Name: %@\n Email: %@\n", [c name], [c email]);
+        } else {
+            NSLog(@"Contact not found");
+        }
+    }
 }
 
 @end

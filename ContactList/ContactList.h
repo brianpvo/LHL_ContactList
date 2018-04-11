@@ -19,4 +19,6 @@
 
 -(void)showContactDetail:(NSString *) string;
 
+-(void)findContact:(NSString *) string;
+
 @end
